@@ -26,6 +26,8 @@
 //  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 //////////////////////////////////////////////////////////////////////////////////////
+//阿阿啊啊啊啊啊啊啊啊啊啊啊啊啊阿啊啊啊啊啊啊啊啊
+//目前用的是MoiveClip这种方法，因为我还是没完全搞明白帧事件的方法阿阿也不想囫囵照别人的打，也不是自己真的懂 阿阿啊啊啊啊啊啊啊啊啊啊阿啊啊啊啊啊 TAT
 class Main extends egret.DisplayObjectContainer {
 
     /**
