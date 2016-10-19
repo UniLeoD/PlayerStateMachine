@@ -110,43 +110,32 @@ class Main extends egret.DisplayObjectContainer {
     }
 
     private textfield: egret.TextField;
-    private bmp:egret.Bitmap;
 
     /**
      * 创建游戏场景
      * Create a game scene
      */
     private createGameScene(): void {
-        //////////////Please don't copy all of my codes completely--ScarletRain77///////////////
-
-
-        var sky: egret.Bitmap = this.createBitmapByName("bg_jpg");
+        var sky: egret.Bitmap = this.createBitmapByName("Banboo_jpg");
         this.addChild(sky);
         var stageW: number = this.stage.stageWidth;
         var stageH: number = this.stage.stageHeight;
         sky.width = stageW;
         sky.height = stageH;
+
         var player = new Player();
         this.addChild(player);
         sky.touchEnabled = true;
-        //player.idle();
-        //监听，移动
         sky.addEventListener(egret.TouchEvent.TOUCH_END, (e) => {
-            player.move(e.stageX , e.stageY );
+            player.move(e.stageX, e.stageY);
             //console.log("X:" + e.stageX + "Y:" + e.stageY);
         }, this);
 
-        
        
-      
+       
         //根据name关键字，异步获取一个json配置文件，name属性请参考resources/resource.json配置文件的内容。
         // Get asynchronously a json configuration file according to name keyword. As for the property of name please refer to the configuration file of resources/resource.json
     }
-
-
-    
-
-   
 
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
@@ -161,113 +150,63 @@ class Main extends egret.DisplayObjectContainer {
 }
 
 
-
-class MAN extends egret.DisplayObjectContainer {
-    private bmpArr1:egret.Bitmap[];
-    private bmpArr2:egret.Bitmap[];
-    private timeOnEnterFrame:number = 0;
-    private frameNumber = 0;
-
-    private isMove = false;
-    private isIdle = false;
-    private isPlayFirst = true;
-        var M_01:egret.Bitmap = this.createBitmapByName("M_01_png");
-        this.addChild(M_01);
-        var M_02:egret.Bitmap = this.createBitmapByName("M_02_png");
-        this.addChild(M_02);
-        var M_03:egret.Bitmap = this.createBitmapByName("M_03_png");
-        this.addChild(M_03);
-        var M_04:egret.Bitmap = this.createBitmapByName("M_04_png");
-        this.addChild(M_04);
-        var M_05:egret.Bitmap = this.createBitmapByName("M_05_png");
-        this.addChild(M_05);
-        var M_06:egret.Bitmap = this.createBitmapByName("M_06_png");
-        this.addChild(M_06);
-        var M_07:egret.Bitmap = this.createBitmapByName("M_07_png");
-        this.addChild(M_07);
-        var M_08:egret.Bitmap = this.createBitmapByName("M_08_png");
-        this.addChild(M_08);
-        var M_09:egret.Bitmap = this.createBitmapByName("M_09_png");
-        this.addChild(M_09);
-        var M_10:egret.Bitmap = this.createBitmapByName("M_10_png");
-        this.addChild(M_10);   
-        var M_11:egret.Bitmap = this.createBitmapByName("M_11_png");
-        this.addChild(M_11);
-        var M_12:egret.Bitmap = this.createBitmapByName("M_12_png");
-        this.addChild(M_12);
-        var M_13:egret.Bitmap = this.createBitmapByName("M_13_png");
-        this.addChild(M_13);
-        
-        bmpArr1 = [M_01,M_02,M_03,M_04,M_05,M_06,M_07,M_08,M_09,M_10,M_11,M_12,M_13];
-        
-        this.addEventListener(egret.Event.ENTER_FRAME,onEnterFrame,this);
-       
-        function onEnterFrame(event:egret.Event) {
-             this.addChild(M_01);
-             
-        }
-}
 class Player extends egret.DisplayObjectContainer {
-    _label: egret.TextField;
-    _body: egret.Shape;
-    _stateMachine: StateMachine;
-    private 
+    _body:egret.MovieClip;
+    _PlayerStateMachine: StateMachine;
+    
     
 
     constructor() {
         super();
-        this._label = new egret.TextField();
-        this._stateMachine = new StateMachine();
-        this._label.y = 30;
-        this._label.text = "Player";
-        this._body = new egret.Shape();
-        this._body.graphics.beginFill(0x000000 , 0.5);
-        this._body.graphics.drawCircle(50, 50, 50);
-        this._body.graphics.endFill();
+        var _mcData = RES.getRes("man_json");
+        var _mcTexture = RES.getRes("man_png");
+     //   _mcTexture.x = -500;
+    //    _mcTexture.y = -500;
+        var _mcDataFactory: egret.MovieClipDataFactory = new egret.MovieClipDataFactory(_mcData, _mcTexture);
+        
+        this._body = new egret.MovieClip( _mcDataFactory.generateMovieClipData( "man" ) );
+        this._body.x = -50;
+        this._body.y = -50;
+        this._PlayerStateMachine = new StateMachine();
+ 
 
         this.addChild(this._body);
-        this.addChild(this._label);
 
+
+        this._body.gotoAndPlay("idle",100);
     }
-//move方法，切换
+
     move(targetX: number, targetY: number) {
-        this._stateMachine.setState(new PlayerMoveState(this, targetX, targetY));
+        this._PlayerStateMachine.setState(new PlayerMoveState(this, targetX, targetY));
     }
 
     idle() {
-        this._stateMachine.setState(new PlayerIdleState(this));
+        this._PlayerStateMachine.setState(new PlayerIdleState(this));
     }
 }
 
-/**
- * 状态机。currentState现在的状态，setState设置状态。先结束前一个状态，再把现在的状态赋值进来
- */
+
 class StateMachine {
     _currentState: State;
     setState(s: State) {
         if (this._currentState) {
             this._currentState.onExit();
         }
-        //s.stateMachine = this; 传出去
+
         this._currentState = s;
         this._currentState.onEnter();
     }
 }
 
-/**
- * 状态接口，有两个方法。
- */
+
 interface State {
-    //stateMachine:StateMachine;
     onEnter();
     onExit();
 }
 
-/**
- * 实现状态。_player为目前的人物，
- */
+
 class PlayerState implements State {
-    //stateMachine:StateMachine;
+
     _player: Player;
     constructor(player: Player) {
         this._player = player;
@@ -282,19 +221,20 @@ class PlayerMoveState extends PlayerState {
     _targetY: number;
     constructor(player: Player, targetX: number, targetY: number) {
         super(player);
-        this._targetX = targetX;
-        this._targetY = targetY;
+        this._targetX = targetX - 130;
+        this._targetY = targetY - 120;
     }
     onEnter() {
-        this._player._label.text = "move";
+        this._player._body.gotoAndPlay("run");
         var tw = egret.Tween.get(this._player._body);
         tw.to({ x: this._targetX, y: this._targetY }, 500).call(this._player.idle, this._player);
+ 
     }
 }
 
 class PlayerIdleState extends PlayerState {
 
     onEnter() {
-        this._player._label.text = "idle";
+        this._player._body.gotoAndPlay("idle");
     }
 }

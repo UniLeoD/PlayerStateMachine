@@ -1,150 +1,35 @@
 {
 	"groups": [
 		{
-			"keys": "bg_jpg,egret_icon_png,description_json,M_01_png,M_02_png,M_03_png,M_04_png,M_05_png,M_06_png,M_07_png,M_08_png,M_09_png,M_10_png,M_11_png,M_12_png,M_13_png,I_01_png,I_02_png,I_03_png,I_04_png,I_06_png,I_07_png,I_08_png,I_09_png,I_10_png,I_11_png,I_12_png,I_05_png",
+			"keys": "egret_icon_png,description_json,man_json,man_png,Banboo_jpg",
 			"name": "preload"
 		}
 	],
 	"resources": [
 		{
-			"name": "bg_jpg",
+			"url": "assets/egret_icon.png",
 			"type": "image",
-			"url": "assets/bg.jpg"
+			"name": "egret_icon_png"
 		},
 		{
-			"name": "egret_icon_png",
-			"type": "image",
-			"url": "assets/egret_icon.png"
-		},
-		{
-			"name": "description_json",
+			"url": "config/description.json",
 			"type": "json",
-			"url": "config/description.json"
+			"name": "description_json"
 		},
 		{
-			"name": "M_01_png",
-			"type": "image",
-			"url": "assets/M_01.png"
+			"url": "assets/man.json",
+			"type": "json",
+			"name": "man_json"
 		},
 		{
-			"name": "M_02_png",
+			"url": "assets/man.png",
 			"type": "image",
-			"url": "assets/M_02.png"
+			"name": "man_png"
 		},
 		{
-			"name": "M_03_png",
+			"name": "Banboo_jpg",
 			"type": "image",
-			"url": "assets/M_03.png"
-		},
-		{
-			"name": "M_04_png",
-			"type": "image",
-			"url": "assets/M_04.png"
-		},
-		{
-			"name": "M_05_png",
-			"type": "image",
-			"url": "assets/M_05.png"
-		},
-		{
-			"name": "M_06_png",
-			"type": "image",
-			"url": "assets/M_06.png"
-		},
-		{
-			"name": "M_07_png",
-			"type": "image",
-			"url": "assets/M_07.png"
-		},
-		{
-			"name": "M_08_png",
-			"type": "image",
-			"url": "assets/M_08.png"
-		},
-		{
-			"name": "M_09_png",
-			"type": "image",
-			"url": "assets/M_09.png"
-		},
-		{
-			"name": "M_10_png",
-			"type": "image",
-			"url": "assets/M_10.png"
-		},
-		{
-			"name": "M_11_png",
-			"type": "image",
-			"url": "assets/M_11.png"
-		},
-		{
-			"name": "M_12_png",
-			"type": "image",
-			"url": "assets/M_12.png"
-		},
-		{
-			"name": "M_13_png",
-			"type": "image",
-			"url": "assets/M_13.png"
-		},
-		{
-			"name": "I_01_png",
-			"type": "image",
-			"url": "assets/I_01.png"
-		},
-		{
-			"name": "I_02_png",
-			"type": "image",
-			"url": "assets/I_02.png"
-		},
-		{
-			"name": "I_03_png",
-			"type": "image",
-			"url": "assets/I_03.png"
-		},
-		{
-			"name": "I_04_png",
-			"type": "image",
-			"url": "assets/I_04.png"
-		},
-		{
-			"name": "I_06_png",
-			"type": "image",
-			"url": "assets/I_06.png"
-		},
-		{
-			"name": "I_07_png",
-			"type": "image",
-			"url": "assets/I_07.png"
-		},
-		{
-			"name": "I_08_png",
-			"type": "image",
-			"url": "assets/I_08.png"
-		},
-		{
-			"name": "I_09_png",
-			"type": "image",
-			"url": "assets/I_09.png"
-		},
-		{
-			"name": "I_10_png",
-			"type": "image",
-			"url": "assets/I_10.png"
-		},
-		{
-			"name": "I_11_png",
-			"type": "image",
-			"url": "assets/I_11.png"
-		},
-		{
-			"name": "I_12_png",
-			"type": "image",
-			"url": "assets/I_12.png"
-		},
-		{
-			"name": "I_05_png",
-			"type": "image",
-			"url": "assets/I_05.png"
+			"url": "assets/Banboo.jpg"
 		}
 	]
 }
