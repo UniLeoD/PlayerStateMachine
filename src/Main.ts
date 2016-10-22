@@ -240,3 +240,11 @@ class PlayerIdleState extends PlayerState {
         this._player._body.gotoAndPlay("idle");
     }
 }
+
+/*
+http://developer.egret.com/cn/example/page/index#100-anim-flash
+http://developer.egret.com/cn/github/egret-docs/Engine2D/timeControl/enterFrame/index.html
+http://bbs.egret.com/thread-256-1-1.html
+http://zccst.iteye.com/blog/2107175
+http://blog.csdn.net/laixiao_hero/article/details/52053721
+*/
